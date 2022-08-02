@@ -2,9 +2,8 @@
 #include "helloworld.h"
 using namespace std;
 
-int main(){
-
-    cout << HelloWorld() << endl;
+int main()
+{
+    cout << PrintHelloWorld();
     return 0;
-
 }

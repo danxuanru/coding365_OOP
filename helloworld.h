@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
-string HelloWorld(){
-    return "HelloWorld!";
+string PrintHelloWorld()
+{
+    return "Hello World! \n";
 }
