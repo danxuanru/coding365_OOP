@@ -11,7 +11,7 @@ hello: HelloWorld.cpp
 # This rule tells make how to build ut_all from ut_main.cpp
 ut_all: ut_main.cpp
 	g++ -std=c++11 -Wfatal-errors ut_main.cpp -o ut_all -lgtest -lpthread
-
+	
 # This rule tells make to delete hello and hello.o
 .PHONY: clean
 clean:

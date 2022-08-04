@@ -1,12 +1,9 @@
-#include <gtest/gtest.h>
-#include "helloworld.h"
-
-TEST(HELLOWORLD, PrintHelloWorld)
-{
-    string output = PrintHelloWorld();
-    string compare = "Hello World! \n";
-    ASSERT_EQ(output, compare);
-}
+#include <gtest/gtest.h> // Google Test (Unit Test)
+#include <iostream>
+using namespace std;
+//#include "ut_all.h"
+//#include "MathVectorTest.h"
+#include "DogTest.h"
 
 int main(int argc, char **argv)
 {
