@@ -13,8 +13,7 @@ private:
 public:
     /* Constructor */
     MathVector() // Default constructor
-    { 
-
+    {
     }
     void init(int dim, double *ptr)
     {

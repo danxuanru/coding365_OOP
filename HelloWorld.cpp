@@ -8,6 +8,6 @@ int main()
     string name;
     cin >> name;
     cout << HelloWorld(name) << endl;
-    //cout << PrintHelloWorld();
+    // cout << PrintHelloWorld();
     return 0;
 }

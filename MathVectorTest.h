@@ -3,8 +3,8 @@
 
 TEST(MathVector, Test01)
 {
-    int d=2;
-    double w[2] = {5, 6};  
+    int d = 2;
+    double w[2] = {5, 6};
     // MathVector n;  call to default constructor
     MathVector m(d, w);
     ASSERT_EQ(m.getDim(), d);
