@@ -59,3 +59,15 @@ TEST(MathVector, Test06)
     ASSERT_EQ(z.getDim(), 2);
     ASSERT_EQ(n.getDim(), 2);
 }
+TEST(MathVector, Test07)
+{
+    double y[2] = {3, 4};
+    MathVector m(2, y);
+    double x[2] = {5, 6};
+    MathVector n(2, x);
+    // We want to add m to n
+    n.add(m);
+    ASSERT_EQ(n.getDim(), 2);
+    ASSERT_EQ(n.getAt(0), 8);
+    ASSERT_EQ(n.getAt(1), 10);
+}

@@ -14,10 +14,16 @@ public:
     /* Constructor */
     MathVector() // Default constructor
     {
+        _dim = 0; // *initialization
+        _vec = NULL;
     }
     void init(int dim, double *ptr)
     {
-        _dim = dim;              // make dim can use in all class, not just in this function
+        _dim = dim;       // make dim can use in all class, not just in this function
+        if (_vec != NULL) // return used memory space
+        {
+            delete _vec;
+        }
         _vec = new double[_dim]; // new : allocate memory according to _dim, return 'address'
         // _vec=ptr -> Wrong!!
         for (int i = 0; i < _dim; i++)
@@ -27,10 +33,13 @@ public:
     }
     MathVector(int dim, double *ptr) // Self-defined constructor
     {
+        // avoid residual garbage in memory -> initialization
+        _dim = 0;
+        _vec = NULL;
         init(dim, ptr);
     }
-    // If data contain pointer, we should have "Copy constructor" and "Copy assignment"
-    // avoid pass by reference
+    /*  If data contain pointer, we should have "Copy constructor" and "Copy assignment"
+        avoid pass by reference  */
     // Copy constructor
     MathVector(MathVector const &input)
     {
@@ -41,6 +50,15 @@ public:
     {
         init(input._dim, input._vec);
         return *this;
+    }
+
+    // Destructor
+    ~MathVector()
+    {
+        if (_vec != NULL)
+        {
+            delete[] _vec;
+        }
     }
 
     // Getter: direct return
@@ -67,5 +85,15 @@ public:
             sum += _vec[i] * _vec[i];
         }
         return sqrt(sum);
+    }
+    void add(MathVector const &input) // refer
+    {
+        if (input._dim == _dim) // when the dimensions are same
+        {
+            for (int i = 0; i < _dim; i++)
+            {
+                _vec[i] += input._vec[i];
+            }
+        }
     }
 };

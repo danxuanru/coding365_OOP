@@ -41,7 +41,7 @@ public:
 
     void addNewToy(string toyName)
     {
-
+        // copy old array
         string *old_toyCollections = new string[_toyAmount];
         for (int i = 0; i < _toyAmount; i++)
         {
@@ -49,6 +49,8 @@ public:
         }
         delete[] _toyCollections;
         _toyAmount++;
+
+        // create new array
         _toyCollections = new string[_toyAmount];
         for (int i = 0; i < _toyAmount - 1; i++)
         {
