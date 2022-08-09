@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 //#include "ut_all.h"
-#include "MathVectorTest.h"
-//#include "DogTest.h"
+//#include "MathVectorTest.h"
+#include "DogTest.h"
 
 int main(int argc, char **argv)
 {
