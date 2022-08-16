@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "MathVector.h"
+using namespace std;
 
 TEST(MathVector, Test01)
 {
@@ -53,9 +54,12 @@ TEST(MathVector, Test06)
     // w = s;
     double y[2] = {3, 4};
     MathVector m(2, y);
-    MathVector n = m;
+    MathVector n = m; // copy constructor
     MathVector z;
-    z = m;
+    for (int i = 0; i < 10; i++)
+    {
+        z = m;
+    }
     ASSERT_EQ(z.getDim(), 2);
     ASSERT_EQ(n.getDim(), 2);
 }
@@ -66,8 +70,51 @@ TEST(MathVector, Test07)
     double x[2] = {5, 6};
     MathVector n(2, x);
     // We want to add m to n
-    n.add(m);
+    n.add(m); // copy constructor
     ASSERT_EQ(n.getDim(), 2);
     ASSERT_EQ(n.getAt(0), 8);
     ASSERT_EQ(n.getAt(1), 10);
+}
+TEST(MathVector, Test08)
+{
+    double y[2] = {3, 4};
+    MathVector m(2, y);
+    double x[2] = {5, 6};
+    MathVector n(2, x);
+    MathVector r, u;
+    r = m + n; // m.+(n)
+    u = m - n; // m.-(n)
+    ASSERT_EQ(r.getDim(), 2);
+    ASSERT_EQ(u.getDim(), 2);
+    // ASSERT_EQ(r.getAt(0), 8);
+    // ASSERT_EQ(r.getAt(1), 10);
+    // ASSERT_EQ(u.getAt(0), -2);
+    // ASSERT_EQ(u.getAt(1), -2);
+    // r = u = m = n;
+    cout << r.getAt(0) << endl;
+    cout << r.getAt(1) << endl;
+    // cout << u.getAt(0) << endl;
+    // cout << m.getAt(0) << endl;
+    // cout << n.getAt(0) << endl;
+}
+TEST(MathVector, Test09)
+{
+    double y[2] = {3, 4};
+    MathVector m(2, y);
+    double q = 10;
+    ASSERT_EQ(m.getDim(), 2);
+    m = q;
+    ASSERT_EQ(m.getDim(), 10);
+}
+TEST(MathVector, Test10)
+{
+    double y[2] = {3, 4};
+    MathVector m(2, y);
+    double e = 5;
+    ASSERT_EQ(m.getDim(), 2);
+    m.expand(e);
+    ASSERT_EQ(m.getDim(), 3);
+    ASSERT_EQ(m.getAt(0), 3);
+    ASSERT_EQ(m.getAt(1), 4);
+    ASSERT_EQ(m.getAt(2), 5);
 }
