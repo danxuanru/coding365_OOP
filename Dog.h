@@ -3,8 +3,28 @@
 
 #include <iostream>
 #include <cmath>
-#include "Toy.h"
+//#include "Toy.h"
 // using namespace std;
+
+class Toy
+{
+private:
+    std::string _toyName;
+
+public:
+    Toy()
+    {
+    }
+    Toy(std::string name)
+    {
+        _toyName = name;
+    }
+
+    std::string getName() const
+    {
+        return _toyName;
+    }
+};
 
 class Dog
 {
