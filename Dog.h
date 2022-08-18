@@ -1,31 +1,9 @@
+#ifndef DOG_H
+#define DOG_H
+
 #include <math.h>
+#include "Toy.h"
 // using namespace std;
-
-class Toy
-{
-private:
-    std::string _toyName;
-
-public:
-    Toy()
-    {
-    }
-    Toy(std::string name)
-    {
-        _toyName = name;
-    }
-
-    // Toy &operator=(Toy const &other)
-    // {
-    //     _toyName = other._toyName;
-    //     return *this;
-    // }
-
-    std::string getName() const
-    {
-        return _toyName;
-    }
-};
 
 class Dog
 {
@@ -108,14 +86,14 @@ public:
         delete[] old_toyCollections;
     }
 
-    void collection()
-    {
-        for (int i = 0; i < _toyAmount; i++)
-        {
-            std::cout << _toyCollections[i].getName() << endl;
-            std::cout << typeid(_toyCollections[i]).name() << endl;
-        }
-    }
+    // void collection()
+    // {
+    //     for (int i = 0; i < _toyAmount; i++)
+    //     {
+    //         std::cout << _toyCollections[i].getName() << endl;
+    //         std::cout << typeid(_toyCollections[i]).name() << endl;
+    //     }
+    // }
 
     /* true if heavier than (>) other */
     bool isHeavierThan(Dog const &other) const
@@ -130,3 +108,5 @@ public:
         }
     }
 };
+
+#endif

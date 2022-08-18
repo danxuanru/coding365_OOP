@@ -34,18 +34,23 @@ TEST(DogTest, addNewToy)
     Toy n("toy2");
     a.addNewToy(m);
     a.addNewToy(n);
-    a.collection();
-    ASSERT_EQ(a.getToy(0), m);
-    ASSERT_EQ(a.getToy(1), n);
+    // a.collection();
+    ASSERT_EQ(a.getToy(0).getName(), "toy1");
+    ASSERT_EQ(a.getToy(1).getName(), "toy2");
 }
-// TEST(DogTest, getToy)
-// {
-//     Dog a("dog1", 20);
-//     a.addNewToy("toy1");
-//     a.addNewToy("toy2");
-//     ASSERT_EQ(a.getToy(0), "toy1");
-//     ASSERT_EQ(a.getToy(1), "toy2");
-// }
+TEST(DogTest, getToy)
+{
+    Dog a("dog1", 30);
+    Toy m("doll");
+    Toy n("robot");
+    Toy q("ball");
+    a.addNewToy(m);
+    a.addNewToy(n);
+    a.addNewToy(q);
+    ASSERT_EQ(a.getToy(0).getName(), "doll");
+    ASSERT_EQ(a.getToy(1).getName(), "robot");
+    ASSERT_EQ(a.getToy(2).getName(), "ball");
+}
 TEST(DogTest, isHeavierThan)
 {
     Dog a("dog1", 20);
