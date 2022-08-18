@@ -1,5 +1,5 @@
 # This is the default target, which will be built when you invoke make
-.PHONY: all
+.PHONY: all ut_all
 
 # Redefine the target all with the requirement of hello & ut_all
 all: hello ut_all

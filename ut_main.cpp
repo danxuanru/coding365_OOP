@@ -5,6 +5,7 @@ using namespace std;
 //#include "MathVectorTest.h"
 //#include "TriangleTest.h"
 //#include "CircleTest.h"
+//#include "PolygonTest.h"
 #include "DogTest.h"
 
 int main(int argc, char **argv)

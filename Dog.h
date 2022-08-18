@@ -1,7 +1,8 @@
 #ifndef DOG_H
 #define DOG_H
 
-#include <math.h>
+#include <iostream>
+#include <cmath>
 #include "Toy.h"
 // using namespace std;
 
@@ -23,13 +24,14 @@ public:
     }
     Dog(std::string name, double weight)
     {
-        if (weight >= 10 && weight <= 50)
-        {
-            _name = name;
-            _weight = weight;
-            _toyAmount = 0;
-            _toyCollections = new Toy[_toyAmount];
-        }
+        // check input data
+        // if (weight <= 10 && weight >= 50)
+        //     throw std::string("weight must >= 10 and <=50");
+
+        _name = name;
+        _weight = weight;
+        _toyAmount = 0;
+        _toyCollections = new Toy[_toyAmount];
     }
     /* copy constructor */
     Dog(Dog const &other)

@@ -3,8 +3,9 @@
 
 #include "MathVector.h"
 #include <cmath>
+#include "Shape.h"
 
-class Triangle
+class Triangle : public Shape
 {
 private:
     MathVector _x, _y, _z;
