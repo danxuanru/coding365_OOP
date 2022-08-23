@@ -1,12 +1,9 @@
-#include <gtest/gtest.h> // Google Test (Unit Test)
+#include <gtest/gtest.h>
 #include <iostream>
 using namespace std;
-//#include "ut_all.h"
-//#include "MathVectorTest.h"
-//#include "TriangleTest.h"
-//#include "CircleTest.h"
-//#include "PolygonTest.h"
-#include "DogTest.h"
+
+#include "ut_cat.h"
+#include "ut_dog.h"
 
 int main(int argc, char **argv)
 {
