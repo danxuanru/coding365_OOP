@@ -17,8 +17,8 @@ public:
     }
     Circle(double *input, double redius)
     {
-        // if (_redius <= 0)
-        //     throw std::string("redius must >0");
+        if (redius <= 0)
+            throw std::string("redius must >0");
 
         _redius = redius;
         _center.expand(input[0]);

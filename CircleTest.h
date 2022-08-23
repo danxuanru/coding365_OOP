@@ -1,6 +1,44 @@
 #include <gtest/gtest.h>
 #include "Circle.h"
-#include "Triangle.h"
+
+// test fixture
+class CircleTest_F : public ::testing ::Test
+{
+
+protected:
+    double arr[2] = {3, 4};
+    double r = 5;
+    Circle c;
+    void SetUp() override
+    {
+        c = Circle(arr, r);
+        // std::cout << "SetUp function is called \n";
+    }
+};
+
+// TEST_F -> class CircleTest
+TEST_F(CircleTest_F, Test01)
+{
+    ASSERT_NEAR(c.perimeter(), 2 * r * M_PI, 0.01);
+}
+TEST_F(CircleTest_F, Test02)
+{
+    ASSERT_NEAR(c.area(), r * r * M_PI, 0.01);
+    ASSERT_EQ(c.getName(), "shape::circle");
+}
+TEST_F(CircleTest_F, Test03)
+{
+    double d = 0;
+    ASSERT_THROW(Circle(arr, d), std::string);
+}
+TEST_F(CircleTest_F, Test04)
+{
+    Shape *s = new Circle(arr, r);
+    s->getName();
+    ASSERT_EQ(s->getName(), "shape::circle");
+}
+
+// ==========================================
 
 TEST(CircleTest, Test01)
 {
