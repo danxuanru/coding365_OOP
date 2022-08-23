@@ -14,11 +14,11 @@ public:
     {
     }
 
-    std::string getName()
+    std::string name()
     {
         return _name;
     }
-    double getWeight()
+    double weight()
     {
         return _weight;
     }
