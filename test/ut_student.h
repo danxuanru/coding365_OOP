@@ -21,14 +21,13 @@ TEST(StudentTest, addScore)
 TEST(StudentTest, getScore)
 {
     Student p(1, "Mike");
-    std::cout << p.getScore(0) << std::endl;
     p.addScore(80);
     p.addScore(95);
     p.addScore(90);
     ASSERT_EQ(p.getScore(1), 80);
     ASSERT_EQ(p.getScore(2), 95);
     ASSERT_EQ(p.getScore(3), 90);
-    ASSERT_THROW(p.getScore(4), std::out_of_range);
+    ASSERT_THROW(p.getScore(5), std::out_of_range);
 }
 
 TEST(StudentTest, scoreAverage) // fail

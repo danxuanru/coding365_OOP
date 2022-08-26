@@ -15,6 +15,9 @@ public:
   {
     _scores.push_back(0);
   }
+  ~Student()
+  {
+  }
 
   void addScore(double const score)
   {
@@ -25,7 +28,6 @@ public:
   {
     if (_scores.size() <= number_of_test)
       throw std::out_of_range("ERROR: NO_SUCH_NUMBER_OF_TEST");
-
     return _scores.at(number_of_test);
   }
 

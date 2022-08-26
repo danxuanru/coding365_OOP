@@ -15,6 +15,9 @@ public:
   Teacher(int const id, std::string const &name, std::string const &department = "Mechanical & Electrical Engineering") : SchoolMember(id, name, department)
   {
   }
+  ~Teacher()
+  {
+  }
 
   // Don't have to handle duplicate ids.
   void addStudent(Student const &stu)
