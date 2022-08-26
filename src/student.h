@@ -26,7 +26,7 @@ public:
 
   double getScore(int const number_of_test) const
   {
-    if (_scores.size() <= number_of_test)
+    if (number_of_test == 0 || _scores.size() <= number_of_test)
       throw std::out_of_range("ERROR: NO_SUCH_NUMBER_OF_TEST");
     return _scores.at(number_of_test);
   }
