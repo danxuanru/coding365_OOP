@@ -3,10 +3,10 @@
 using namespace std;
 //#include "ut_all.h"
 //#include "MathVectorTest.h"
-//#include "TriangleTest.h"
-//#include "CircleTest.h"
-//#include "PolygonTest.h"
-#include "DogTest.h"
+#include "TriangleTest.h"
+#include "CircleTest.h"
+#include "PolygonTest.h"
+//#include "DogTest.h"
 
 int main(int argc, char **argv)
 {

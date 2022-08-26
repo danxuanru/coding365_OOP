@@ -2,6 +2,7 @@
 #define POLYGON_H
 #include "Shape.h"
 #include "MathVector.h"
+#include "Triangle.h"
 
 class Polygon : public Shape
 {
@@ -32,6 +33,15 @@ public:
     }
     double area() override
     {
+        double sum = 0;
+        std::cout << _vertex.size() << std::endl;
+
+        for (int i = 0; i < _vertex.size(); i++)
+        {
+            Triangle t(_vertex[i], _vertex[i + 1], _vertex[i + 2]);
+            sum += t.area();
+        }
+        return sum;
     }
 };
 

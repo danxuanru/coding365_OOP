@@ -2,6 +2,7 @@
 #include "Circle.h"
 
 // test fixture
+// [inheritance] ::testing(namespace) ::Test(class)
 class CircleTest_F : public ::testing ::Test
 {
 
