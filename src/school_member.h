@@ -13,9 +13,9 @@ public:
     _name = name;
     _department = department;
   }
-  ~SchoolMember()
-  {
-  }
+  // ~SchoolMember()
+  // {
+  // }
 
   int id() const
   {

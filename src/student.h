@@ -15,9 +15,9 @@ public:
   {
     _scores.push_back(0);
   }
-  ~Student()
-  {
-  }
+  // ~Student()
+  // {
+  // }
 
   void addScore(double const score)
   {

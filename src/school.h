@@ -14,11 +14,11 @@ public:
   {
     _schoolMember.push_back(member);
   }
-  ~School()
-  {
-    for (int i = 0; i < _schoolMember.size(); i++)
-      delete _schoolMember.at(i);
-  }
+  // ~School()
+  // {
+  //   for (int i = 0; i < _schoolMember.size(); i++)
+  //     delete _schoolMember.at(i);
+  // }
 
   void addSchoolMember(SchoolMember *const member)
   {
