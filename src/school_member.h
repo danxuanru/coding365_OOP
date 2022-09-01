@@ -13,9 +13,6 @@ public:
     _name = name;
     _department = department;
   }
-  // ~SchoolMember()
-  // {
-  // }
 
   int id() const
   {
@@ -36,6 +33,11 @@ public:
   void transfer(std::string const &department)
   {
     _department = department;
+  }
+
+  // destructor
+  ~SchoolMember()
+  {
   }
 
 private:
