@@ -10,15 +10,17 @@ class School
 public:
   School() = default;
 
-  School(SchoolMember *const member)
-  {
-    _schoolMember.push_back(member);
-  }
-  // ~School()
+  // School(SchoolMember *const member)
   // {
-  //   for (int i = 0; i < _schoolMember.size(); i++)
-  //     delete _schoolMember.at(i);
+  //   _schoolMember.push_back(member);
   // }
+
+  // destructor (empty)
+  ~School()
+  {
+    // for (int i = 0; i < _schoolMember.size(); i++)
+    //   delete _schoolMember.at(i);
+  }
 
   void addSchoolMember(SchoolMember *const member)
   {
@@ -40,12 +42,17 @@ public:
 private:
   std::vector<SchoolMember *> _schoolMember;
 
-  void deep_copy(std::vector<SchoolMember *> member)
-  {
-    for (int i = 0; i < member.size(); i++)
-    {
-    }
-  }
+  // copy asssignment
+  School &operator=(School const &other) { return *this; }
+  // copy constructor
+  School(School const &other) {}
+
+  // void deep_copy(std::vector<SchoolMember *> member)
+  // {
+  //   for (int i = 0; i < member.size(); i++)
+  //   {
+  //   }
+  // }
 };
 
 #endif

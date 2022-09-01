@@ -13,7 +13,7 @@ class Student : public SchoolMember
 public:
   Student(int const id, std::string const &name, std::string const &department = "Mechanical & Electrical Engineering") : SchoolMember(id, name, department)
   {
-    _scores.push_back(0);
+    // _scores.push_back(0);
   }
   // ~Student()
   // {
@@ -26,21 +26,21 @@ public:
 
   double getScore(int const number_of_test) const
   {
-    if (number_of_test == 0 || _scores.size() <= number_of_test)
+    if (number_of_test < 1 || number_of_test > _scores.size())
       throw std::out_of_range("ERROR: NO_SUCH_NUMBER_OF_TEST");
-    return _scores.at(number_of_test);
+    return _scores.at(number_of_test - 1); // index from 1
   }
 
   double scoreAverage() const
   {
-    if (_scores.size() == 1)
+    if (_scores.size() == 0)
       throw std::range_error("ERROR:NO_SCORE");
 
     double sum = 0;
     // index from 1
-    for (int i = 1; i < _scores.size(); i++)
+    for (int i = 0; i < _scores.size(); i++)
       sum += _scores.at(i);
-    double ans = sum / (_scores.size() - 1);
+    double ans = sum / _scores.size();
     return ans;
   }
 
