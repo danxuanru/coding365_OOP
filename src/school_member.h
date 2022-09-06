@@ -35,8 +35,8 @@ public:
     _department = department;
   }
 
-  // destructor
-  ~SchoolMember()
+  // "virtual" destructor
+  virtual ~SchoolMember()
   {
   }
 
