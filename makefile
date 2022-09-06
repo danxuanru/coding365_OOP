@@ -1,19 +1,18 @@
-.PHONY: directories clean stat
+# This is the default target, which will be built when you invoke make
+.PHONY: all ut_all
 
-all: directories bin/ut_all
+# Redefine the target all with the requirement of hello & ut_all
+all: ut_all
 
-CFLAGS = -std=c++11 -Wfatal-errors
-SRC = src/school_member.h src/student.h src/teacher.h src/school.h
-TEST = test/ut_student.h test/ut_teacher.h test/ut_school.h
+# This rule tells make how to build HelloWorld from HelloWorld.cpp
+# hello: HelloWorld.cpp
+# 	g++ HelloWorld.cpp -o HelloWorld
 
-bin/ut_all: test/ut_main.cpp $(SRC) $(TEST)
-	g++ $(CFLAGS) test/ut_main.cpp -o bin/ut_all -lgtest -pthread
-
-directories:
-	mkdir -p bin
-
-clean: directories
-	rm -rf bin
-
-stat:
-	wc src/* test/*
+# This rule tells make how to build ut_all from ut_main.cpp
+ut_all: ut_main.cpp
+	g++ -std=c++11 -Wfatal-errors ut_main.cpp -o ut_all -lgtest -lpthread
+	
+# This rule tells make to delete hello and hello.o
+.PHONY: clean
+clean:
+	rm -f ut_all
