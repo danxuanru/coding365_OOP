@@ -1,17 +1,32 @@
 #include <gtest/gtest.h>
 #include "cat.h"
 
-TEST(CatTest, constructor)
+class CatTest : public ::testing::Test
 {
-    Cat m("Kitty", 4);
-    ASSERT_EQ(m.name(), "Kitty");
-    ASSERT_EQ(m.weight(), 4);
-    ASSERT_THROW(Cat("Cherry", 8), std::range_error);
+protected:
+    double DELTA = 0.01;
+    Cat a, wrong;
+    std::string name1;
+    double weight1, weight2;
+    void SetUp() override
+    {
+        name1 = "Cat01";
+        weight1 = 3;
+        weight2 = 6;
+        a = Cat(name1, weight1);
+        wrong = Cat(name1, weight2);
+    }
+};
+TEST_F(CatTest, constructor)
+{
+    ASSERT_EQ(a.name(), name1);
+    ASSERT_NEAR(a.weight(), weight1, DELTA);
+    ASSERT_THROW(Cat("???", 10), std::range_error);
+    ASSERT_THROW(Cat("???", 1), std::range_error);
 }
-TEST(CatTest, feed)
+TEST_F(CatTest, feed)
 {
-    Cat m("Kitty", 5.7);
-    m.feed();
-    ASSERT_EQ(m.weight(), 5.9);
-    ASSERT_THROW(m.feed(), std::out_of_range);
+    a.feed();
+    ASSERT_NEAR(3.2, a.weight(), DELTA);
+    ASSERT_THROW(wrong.feed(), std::out_of_range);
 }

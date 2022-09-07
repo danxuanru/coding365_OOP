@@ -1,86 +1,102 @@
 #include <gtest/gtest.h>
 #include "yard.h"
-#include "pet.h"
-#include "cat.h"
-#include "dog.h"
-
-bool condition(Pet *pet)
+void extracMethod(Yard *y)
 {
-    if (pet->weight() > 20)
-        return true;
-    else
-        return false;
+    y->addPet(new Cat("cat01", 3));
+    y->addPet(new Dog("dog01", 20));
+    y->addPet(new Cat("cat02", 4));
+    y->addPet(new Dog("dog02", 30));
+    y->addPet(new Cat("cat03", 5));
 }
-
-void extraMethod(Yard *yard)
-{
-    yard->addPet(new Cat("cat01", 2));
-    yard->addPet(new Dog("dog01", 30));
-    yard->addPet(new Cat("cat02", 3));
-    yard->addPet(new Dog("dog02", 50));
-    yard->addPet(new Cat("cat03", 2));
-}
-
-class YardTest : public ::testing ::Test
+class YardTest : public ::testing::Test
 {
 protected:
-    // Yard y;
-
-    // SetUp() & TearDown() run every test case
+    double DELTA = 0.01;
     void SetUp() override
     {
         ASSERT_EQ(Pet::amount(), 0);
         ASSERT_EQ(Cat::amount(), 0);
         ASSERT_EQ(Dog::amount(), 0);
-        // extraMethod(&y);
-        // std::cout << "SetUp is called\n";
     }
     void TearDown() override
     {
         ASSERT_EQ(Pet::amount(), 0);
         ASSERT_EQ(Cat::amount(), 0);
         ASSERT_EQ(Dog::amount(), 0);
-        // std::cout << "TearDown is called\n";
     }
 };
-
-class Fun
+TEST_F(YardTest, lambda_function)
+{
+    Yard a;
+    extracMethod(&a);
+    std::vector<Pet *> ans = a.getPetWithCondition([](Pet *pet)
+                                                   { return pet->weight() > 10; });
+    ASSERT_EQ(2, ans.size());
+    ASSERT_EQ(ans.at(0)->name(), "dog01");
+    ASSERT_NEAR(ans.at(0)->weight(), 20, DELTA);
+    ASSERT_EQ(ans.at(1)->name(), "dog02");
+    ASSERT_NEAR(ans.at(1)->weight(), 30, DELTA);
+}
+bool func(Pet *pet)
+{
+    return pet->weight() < 10;
+}
+TEST_F(YardTest, pass_by_function)
+{
+    Yard a;
+    extracMethod(&a);
+    std::vector<Pet *> ans = a.getPetWithCondition(func);
+    ASSERT_EQ(3, ans.size());
+    ASSERT_EQ(ans.at(0)->name(), "cat01");
+    ASSERT_NEAR(ans.at(0)->weight(), 3, DELTA);
+    ASSERT_EQ(ans.at(1)->name(), "cat02");
+    ASSERT_NEAR(ans.at(1)->weight(), 4, DELTA);
+    ASSERT_EQ(ans.at(2)->name(), "cat03");
+    ASSERT_NEAR(ans.at(2)->weight(), 5, DELTA);
+}
+class Functor
 {
 public:
-    bool operator()(Pet *p)
+    bool operator()(Pet *pet)
     {
-        return p->weight() < 20;
+        return pet->weight() > 10;
     }
 };
-
-TEST_F(YardTest, Test01)
+TEST_F(YardTest, pass_by_functor)
 {
-    Yard y;
-    extraMethod(&y);
-    std::vector<Pet *> ans;
-    ans = y.getPetWithCondition(condition); // condition -> comp (in template)
-    ASSERT_EQ(ans.size(), 2);
-    ASSERT_EQ(Pet::amount(), 5);
-    ASSERT_EQ(Cat::amount(), 3);
-    ASSERT_EQ(Dog::amount(), 2);
+    Yard a;
+    extracMethod(&a);
+    Functor test;
+    std::vector<Pet *> ans = a.getPetWithCondition(test);
+    ASSERT_EQ(2, ans.size());
+    ASSERT_EQ(ans.at(0)->name(), "dog01");
+    ASSERT_NEAR(ans.at(0)->weight(), 20, DELTA);
+    ASSERT_EQ(ans.at(1)->name(), "dog02");
+    ASSERT_NEAR(ans.at(1)->weight(), 30, DELTA);
 }
-TEST_F(YardTest, Test02)
+TEST_F(YardTest, copy_assignment)
 {
-    Yard y;
-    extraMethod(&y);
-    std::vector<Pet *> ans;
-    // lambda function []
-    ans = y.getPetWithCondition([](Pet *p)
-                                { return p->weight() > 0; });
-    ASSERT_EQ(ans.size(), 5);
+    Yard a;
+    extracMethod(&a);
+    Yard b = a;
+    Functor test;
+    std::vector<Pet *> ans = b.getPetWithCondition(test);
+    ASSERT_EQ(2, ans.size());
+    ASSERT_EQ(ans.at(0)->name(), "dog01");
+    ASSERT_NEAR(ans.at(0)->weight(), 20, DELTA);
+    ASSERT_EQ(ans.at(1)->name(), "dog02");
+    ASSERT_NEAR(ans.at(1)->weight(), 30, DELTA);
 }
-TEST_F(YardTest, Test03)
+TEST_F(YardTest, copy_constructor)
 {
-    Yard y;
-    extraMethod(&y);
-    std::vector<Pet *> ans;
-    // class object as function
-    Fun f;
-    ans = y.getPetWithCondition(f);
-    ASSERT_EQ(ans.size(), 3);
+    Yard a;
+    extracMethod(&a);
+    Yard b(a);
+    Functor test;
+    std::vector<Pet *> ans = b.getPetWithCondition(test);
+    ASSERT_EQ(2, ans.size());
+    ASSERT_EQ(ans.at(0)->name(), "dog01");
+    ASSERT_NEAR(ans.at(0)->weight(), 20, DELTA);
+    ASSERT_EQ(ans.at(1)->name(), "dog02");
+    ASSERT_NEAR(ans.at(1)->weight(), 30, DELTA);
 }
